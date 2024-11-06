@@ -4,6 +4,8 @@
  */
 package aplikasiganjilgenap;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +19,17 @@ public class tugas1 extends javax.swing.JFrame {
      */
     public tugas1() {
         initComponents();
+         txtAngka.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent e) {
+            char c = e.getKeyChar();
+            // Jika karakter yang dimasukkan bukan angka, batalkan input tersebut
+            if (!Character.isDigit(c)) {
+                e.consume(); // Menghapus input yang bukan angka
+                JOptionPane.showMessageDialog(null, "Masukkan hanya angka!", "Input Salah", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    });
     }
 
     /**
@@ -48,6 +61,13 @@ public class tugas1 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         jLabel2.setText("Masukkan angka  :");
 
+        txtAngka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAngkaActionPerformed(evt);
+            }
+        });
+
+        btnHapus.setBackground(new java.awt.Color(204, 255, 204));
         btnHapus.setText("Hapus");
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +75,7 @@ public class tugas1 extends javax.swing.JFrame {
             }
         });
 
+        btnCek.setBackground(new java.awt.Color(255, 204, 255));
         btnCek.setText("Cek");
         btnCek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +83,7 @@ public class tugas1 extends javax.swing.JFrame {
             }
         });
 
+        btnKeluar.setBackground(new java.awt.Color(255, 153, 153));
         btnKeluar.setText("keluar");
         btnKeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,14 +99,13 @@ public class tugas1 extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addComponent(txtAngka, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                             .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCek, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(46, 46, 46)
-                            .addComponent(btnKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtAngka, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(105, 105, 105)
+                            .addComponent(btnCek, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -92,14 +113,15 @@ public class tugas1 extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtAngka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHapus)
-                    .addComponent(btnCek)
-                    .addComponent(btnKeluar))
-                .addContainerGap(74, Short.MAX_VALUE))
+                    .addComponent(btnCek))
+                .addGap(18, 18, 18)
+                .addComponent(btnKeluar)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -132,7 +154,14 @@ public class tugas1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        // TODO add your handling code here:
+                                      
+    // Menghapus teks yang ada di txtAngka
+    txtAngka.setText("");
+    
+    // Memindahkan fokus kembali ke txtAngka dan menempatkan kursor di awal
+    txtAngka.requestFocus();  // Memindahkan fokus ke txtAngka
+    txtAngka.selectAll();     // Menempatkan kursor di awal teks (meskipun teks sudah dihapus)
+   
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnCekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekActionPerformed
@@ -160,9 +189,29 @@ public class tugas1 extends javax.swing.JFrame {
          
     }//GEN-LAST:event_btnCekActionPerformed
 
+ 
+    
     private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
-        System.exit(0);
+        int response = JOptionPane.showConfirmDialog(this, "Yakin lah pian handak keluae?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+    // Jika pengguna memilih "Yes"
+    if (response == JOptionPane.YES_OPTION) {
+        System.exit(0); // Keluar dari aplikasi
+    }
     }//GEN-LAST:event_btnKeluarActionPerformed
+
+    private void txtAngkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAngkaActionPerformed
+        txtAngka.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    e.consume(); // Remove non-digit character
+                    JOptionPane.showMessageDialog(null, "Masukkan hanya angka!", "Input Salah", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+    }//GEN-LAST:event_txtAngkaActionPerformed
 
     private boolean isPrime(int number) {
         if (number <= 1) {
