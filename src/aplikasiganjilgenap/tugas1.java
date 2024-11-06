@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class tugas1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form tugas1
+     * 
      */
     public tugas1() {
         initComponents();
@@ -63,6 +63,11 @@ public class tugas1 extends javax.swing.JFrame {
         });
 
         btnKeluar.setText("keluar");
+        btnKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKeluarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -131,26 +136,51 @@ public class tugas1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnCekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekActionPerformed
-    String input = txtAngka.getText();
+       String input = txtAngka.getText();
+
         if (!input.isEmpty()) {
             try {
                 int angka = Integer.parseInt(input);
-                String hasil = (angka % 2 == 0) ? "Genap" : "Ganjil";
-                JOptionPane.showMessageDialog(this, "Angka " + angka + " adalah " + hasil, "Hasil", JOptionPane.INFORMATION_MESSAGE);
+
+                // Mengecek apakah angka ganjil atau genap
+                String hasilGanjilGenap = (angka % 2 == 0) ? "Genap" : "Ganjil";
+
+                // Mengecek apakah angka prima
+                String hasilPrima = isPrime(angka) ? "dan juga merupakan bilangan prima." : "dan bukan bilangan prima.";
+
+                // Menampilkan hasil menggunakan JOptionPane
+                JOptionPane.showMessageDialog(this, "Angka " + angka + " adalah " + hasilGanjilGenap + " " + hasilPrima, "Hasil", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Masukkan angka yang valid!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Masukkan angka terlebih dahulu", "Input Kosong", JOptionPane.WARNING_MESSAGE);
-        } 
+        }
+         
     }//GEN-LAST:event_btnCekActionPerformed
 
+    private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnKeluarActionPerformed
+
+    private boolean isPrime(int number) {
+        if (number <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -171,9 +201,19 @@ public class tugas1 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(tugas1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+         try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(tugas1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new tugas1().setVisible(true);
             }
@@ -191,4 +231,7 @@ public class tugas1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField txtAngka;
     // End of variables declaration//GEN-END:variables
+
+    
+    
 }
