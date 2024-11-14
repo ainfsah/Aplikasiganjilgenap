@@ -27,12 +27,13 @@ Aplikasi ini dibuat menggunakan Java Swing untuk menyediakan antarmuka yang muda
 4. Gunakan tombol **Hapus** untuk membersihkan input yang ada.
 5. Klik tombol **Keluar** untuk menutup aplikasi.
 
-##Pembuatf aplikasi
+## Pembuat aplikasi
+
 **Nama**: Siti Aisyah Nor Fitriani  
 **NIM**: 2210010043  
 **TUgas2**
 
-##DEMO
+## DEMO
 
 
 **Catatan**: Aplikasi ini hanya menerima angka dalam format integer. 
