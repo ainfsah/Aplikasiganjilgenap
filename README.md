@@ -34,6 +34,6 @@ Aplikasi ini dibuat menggunakan Java Swing untuk menyediakan antarmuka yang muda
 **TUgas2**
 
 ## DEMO
-![Demo Aplikasi]()
+![Demo Aplikasi](img/AplikasiGanjilGenap.gif)
 
 **Catatan**: Aplikasi ini hanya menerima angka dalam format integer. 
